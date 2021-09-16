@@ -1,3 +1,4 @@
+import { register } from "../../models/users.js";
 import validateEmail from "../../ultis.js";
 import InputWrapper from "../components/InputWrapper.js";
 
@@ -21,12 +22,7 @@ export default class Register extends InputWrapper {
   }
   handleInput(fieldName, filedValue) {
     let tmpState = this.state;
-    if (filedValue.trim() == "") {
-      tmpState.messegeError[fieldName] = "Invalid" + " " + fieldName;
-    } else {
-      tmpState.messegeError[fieldName] = "";
-    }
-    tmpState.data[fieldName] = filedValue.trim();
+
     if (fieldName == "email" && filedValue) {
       if (!validateEmail(filedValue)) {
         tmpState.messegeError[fieldName] = "Email is false";
@@ -46,21 +42,29 @@ export default class Register extends InputWrapper {
         tmpState.messegeError[fieldName] = "Password is incorrect";
       }
     }
+    if (filedValue.trim() == "") {
+      tmpState.messegeError[fieldName] = "Invalid" + " " + fieldName;
+    } else {
+      tmpState.messegeError[fieldName] = "";
+    }
+    tmpState.data[fieldName] = filedValue.trim();
 
     this.setState(tmpState);
   }
 
   render() {
-    let $container = document.getElementById("content");
+    let $container = document.getElementById("contentRegister");
     $container.classList.add("main");
 
-    let $divmain = document.createElement("div");
-    $divmain.classList.add("main");
     let $form = document.createElement("form");
     $form.classList.add("form");
-    
+    let $formoff = document.createElement("i");
+    $formoff.className = "fas fa-times";
+    $formoff.onclick = function () {
+      $container.style.display = "none";
+    };
     let $heading = document.createElement("h1");
-    $heading.classList.add = "heading";
+    $heading.className = "heading";
     $heading.innerHTML = "Đăng kí";
     let $spacer = document.createElement("div");
     $spacer.classList.add("spacer");
@@ -76,7 +80,6 @@ export default class Register extends InputWrapper {
       placeholder: "Username",
       onblur: (event) => {
         this.handleInput("name", event.target.value);
-        $container.removeChild($divmain);
       },
     });
     let $email = new InputWrapper({
@@ -87,7 +90,6 @@ export default class Register extends InputWrapper {
       placeholder: "example@gmail.com",
       onblur: (event) => {
         this.handleInput("email", event.target.value);
-        $container.removeChild($divmain);
       },
     });
     let $password = new InputWrapper({
@@ -98,7 +100,6 @@ export default class Register extends InputWrapper {
       placeholder: "123456",
       onblur: (event) => {
         this.handleInput("password", event.target.value);
-        $container.removeChild($divmain);
       },
     });
     let $confirmpassword = new InputWrapper({
@@ -109,7 +110,6 @@ export default class Register extends InputWrapper {
       value: this.state.data.confirmpassword,
       onblur: (event) => {
         this.handleInput("confirmpassword", event.target.value);
-        $container.removeChild($divmain);
       },
     });
 
@@ -137,15 +137,16 @@ export default class Register extends InputWrapper {
     }
     $form.onsubmit = (event) => {
       event.preventDefault();
-      //   register(
-      //     this.state.data.name,
-      //     this.state.data.email,
-      //     this.state.data.password
-      //   );
+      register(
+        this.state.data.name,
+        this.state.data.email,
+        this.state.data.password
+      );
       return;
     };
 
     $form.append(
+      $formoff,
       $heading,
       $spacer,
       $name.render(),
@@ -154,9 +155,8 @@ export default class Register extends InputWrapper {
       $confirmpassword.render(),
       $button
     );
-
-    $divmain.append($form);
-    $container.append($divmain);
+    $container.innerHTML = ``;
+    $container.append($form);
     return $container;
   }
 }

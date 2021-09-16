@@ -17,6 +17,7 @@ export default class InputWrapper extends Basecomponents {
     $message.innerHTML = this.props.message;
     $formgroup.append($label, $input, $message);
     $input.onblur = this.props.onblur;
+
     $message.classList.add("invalid");
     return $formgroup;
   }

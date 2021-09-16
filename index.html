@@ -5,14 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <link rel="stylesheet" href="./style/style.css" />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-auth-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCTxy5ZKhSQowmXN_LOBSFEbW0-_aIKX2U",
+        authDomain: "projectg4-ci65.firebaseapp.com",
+        projectId: "projectg4-ci65",
+        storageBucket: "projectg4-ci65.appspot.com",
+        messagingSenderId: "383260057643",
+        appId: "1:383260057643:web:8c8ea7738c8d2392f98a6e",
+        measurementId: "G-VD4LWXH6KP",
+      };
+      const firebaseApp = firebase.initializeApp(firebaseConfig);
+      const db = firebaseApp.firestore();
+      const auth = firebaseApp.auth();
+    </script>
   </head>
   <body>
     <div id="main">
       <div class="header"></div>
     </div>
 
-    <div id="content" style="display: none"></div>
+    <div id="contentRegister" style="display: none"></div>
+    <div id="contentLogin" style="display: none"></div>
+    <div id="addsong" class="main" style="display: none"></div>
   </body>
 
   <script src="./index.js" type="module"></script>
