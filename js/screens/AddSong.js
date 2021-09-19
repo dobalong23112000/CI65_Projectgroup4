@@ -9,7 +9,8 @@ export default class AddSong extends InputWrapper {
         author: "",
         singer: "",
         genre: "difference",
-        audio: "Choose File",
+        audio: "",
+        img: "",
       },
       messegeError: {
         namesong: "",
@@ -17,10 +18,11 @@ export default class AddSong extends InputWrapper {
         singer: "",
         genre: "",
         audio: "",
+        img: "",
       },
     };
   }
-  handleAddSong(fieldName, filedValue, filedFile) {
+  handleAddSong(fieldName, filedValue) {
     let tmpState = this.state;
     if (filedValue.trim() == "") {
       tmpState.messegeError[fieldName] = "Invalid";
@@ -28,9 +30,40 @@ export default class AddSong extends InputWrapper {
       tmpState.messegeError[fieldName] = "";
       tmpState.data[fieldName] = filedValue;
     }
-    console.log(this.state);
+
     this.setState(tmpState);
   }
+  async upLoadSong(file) {
+    let thisRef = storageRef.child(file.name);
+    await thisRef.put(file);
+    console.log("THanh cong");
+  }
+  handleBtnonclick = async (e) => {
+    e.preventDefault();
+    console.log(this.state);
+
+    await db.collection("Listmusic").add(this.state.data);
+    let tmpState = this.state;
+    tmpState = {
+      data: {
+        namesong: "",
+        author: "",
+        singer: "",
+        genre: "difference",
+        audio: "",
+        img: "",
+      },
+      messegeError: {
+        namesong: "",
+        author: "",
+        singer: "",
+        genre: "",
+        audio: "",
+        img: "",
+      },
+    };
+    this.setState(tmpState);
+  };
   render() {
     let $container = document.querySelector("#addsong");
     let $form = document.createElement("form");
@@ -47,7 +80,7 @@ export default class AddSong extends InputWrapper {
     $spacer.classList.add("spacer");
     let _namesong = new InputWrapper({
       label: "Name song",
-      type: "email",
+      type: "text",
       message: this.state.messegeError.namesong,
       value: this.state.data.namesong,
       placeholder: "",
@@ -57,7 +90,7 @@ export default class AddSong extends InputWrapper {
     });
     let _singername = new InputWrapper({
       label: "Singer Name",
-      type: "",
+      type: "text",
       message: this.state.messegeError.singer,
       value: this.state.data.singer,
       placeholder: "",
@@ -67,12 +100,22 @@ export default class AddSong extends InputWrapper {
     });
     let _authorname = new InputWrapper({
       label: "Author Name",
-      type: "",
+      type: "text",
       message: this.state.messegeError.author,
       value: this.state.data.author,
       placeholder: "",
       onblur: (e) => {
         this.handleAddSong("author", e.target.value);
+      },
+    });
+    let _img = new InputWrapper({
+      label: "img",
+      type: "text",
+      message: this.state.messegeError.img,
+      value: this.state.data.img,
+      placeholder: "",
+      onblur: (e) => {
+        this.handleAddSong("img", e.target.value);
       },
     });
     let $formgroupgenre = document.createElement("div");
@@ -119,13 +162,15 @@ export default class AddSong extends InputWrapper {
     $input.value = this.state.data.audio;
     $formgroupaudio.append($labelaudio, $inputaudio, $input, $messageaudio);
     $inputaudio.onchange = (e) => {
-      this.handleAddSong("audio", e.target.value);
+      this.upLoadSong(e.target.files[0]);
+      this.handleAddSong("audio", e.target.files[0].name);
     };
 
     let $button = document.createElement("button");
     $button.classList.add("form-submit");
     $button.innerHTML = "+ Add music";
     $button.disabled = true;
+    $button.onclick = this.handleBtnonclick;
     let isPassed = true;
     for (let key in this.state.messegeError) {
       if (this.state.messegeError[key]) {
@@ -153,11 +198,13 @@ export default class AddSong extends InputWrapper {
       _namesong.render(),
       _singername.render(),
       _authorname.render(),
+      _img.render(),
       $formgroupgenre,
       $formgroupaudio,
 
       $button
     );
+
     $container.innerHTML = "";
     $container.append($form);
 

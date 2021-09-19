@@ -1,6 +1,11 @@
 export async function register(name, email, password) {
   try {
-    await auth.createUserWithEmailAndPassword(email, password); // xay ra hien tuong bat dong bo
+    await auth.createUserWithEmailAndPassword(email, password);
+    let user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: name,
+    });
+    firebase.auth().signOut();
 
     alert("Dang ki thanh cong");
   } catch (error) {
@@ -11,6 +16,8 @@ export async function login(email, password) {
   try {
     await auth.signInWithEmailAndPassword(email, password);
     alert("Dang nhap thanh cong");
+    let $login = document.querySelector("#contentLogin");
+    $login.style.display = "none";
   } catch (error) {
     alert(error.message);
   }

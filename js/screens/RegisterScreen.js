@@ -135,13 +135,30 @@ export default class Register extends InputWrapper {
       $button.style.backgroundColor = "rgb(255 99 71 / 50%)";
       $button.style.cursor = "default";
     }
-    $form.onsubmit = (event) => {
+    $form.onsubmit = async (event) => {
       event.preventDefault();
       register(
         this.state.data.name,
         this.state.data.email,
         this.state.data.password
       );
+      let tmpState = this.state;
+      tmpState = {
+        data: {
+          name: "",
+          email: "",
+          password: "",
+          confirmpassword: "",
+        },
+        messegeError: {
+          name: "",
+          email: "",
+          password: "",
+          confirmpassword: "",
+        },
+      };
+      this.setState(tmpState);
+      
       return;
     };
 

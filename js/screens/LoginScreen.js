@@ -109,6 +109,18 @@ export default class Login extends InputWrapper {
     $form.onsubmit = (event) => {
       event.preventDefault();
       login(this.state.data.email, this.state.data.password);
+      let tmpState = this.state;
+      tmpState = {
+        data: {
+          email: "",
+          password: "",
+        },
+        messegeError: {
+          email: "",
+          password: "",
+        },
+      };
+      this.setState(tmpState);
       return;
     };
 

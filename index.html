@@ -20,9 +20,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-storage-compat.js"></script>
     <script>
       const firebaseConfig = {
         apiKey: "AIzaSyCTxy5ZKhSQowmXN_LOBSFEbW0-_aIKX2U",
@@ -34,13 +36,18 @@
         measurementId: "G-VD4LWXH6KP",
       };
       const firebaseApp = firebase.initializeApp(firebaseConfig);
+
       const db = firebaseApp.firestore();
       const auth = firebaseApp.auth();
+      let storageRef = firebase.storage().ref("audio");
     </script>
   </head>
   <body>
     <div id="main">
       <div class="header"></div>
+      <div id="content"></div>
+      <div></div>
+      <div id="player"></div>
     </div>
 
     <div id="contentRegister" style="display: none"></div>
