@@ -53,6 +53,8 @@ export default class listmusicscreen extends Songwrapper {
     let audioUrl = await storageRef
       .child(`${infoSong.data().audio}`)
       .getDownloadURL();
+    let _content = document.querySelector("#content");
+    _content.innerHTML = "";
     let _comment = new CommentScreen({
       id: infoSong.id,
     }).render();
