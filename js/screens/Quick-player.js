@@ -20,13 +20,27 @@ export default class quickPlayer extends BaseComponents {
   <div class="btn btn-next">
     <i class="fas fa-step-forward"></i>
   </div>
-  <div class="btn btn-random">
-    <i class="fas fa-random"></i>
+  <div class="btn btn-volume-up">
+  <i class="fas fa-volume-up" ></i>
+ 
   </div>`;
     let $btnplay = $control.querySelector(".btn-toggle-play");
     let $btnrepeat = $control.querySelector(".btn-repeat");
     let $pause = $btnplay.querySelector(".fas");
     let isRepeat = false;
+    let $btnvolume = $control.querySelector(".btn-volume-up");
+    let $volume = $btnvolume.querySelector(".fas ");
+    $volume.onclick = (e) => {
+      console.log(e.target);
+      if ($volume.className === "fas fa-volume-up") {
+        $volume.classList.replace("fa-volume-up", "fa-volume-mute");
+        $audio.volume = 0.0;
+      } else {
+        $volume.classList.replace("fa-volume-mute", "fa-volume-up");
+        $audio.volume = 1.0;
+      }
+    };
+
     let $progress = document.createElement("input");
     $progress.id = "progress";
     $progress.classList.add("progress");
@@ -81,7 +95,7 @@ export default class quickPlayer extends BaseComponents {
     let $player = document.querySelector("#player");
     $player.setAttribute(
       "style",
-      "background-color: darkgray;position: fixed;border: 1px solid #555;height: 100px; bottom: 10px;left: 0;right: 0"
+      "background-color: #021f32;position: fixed;height: 100px; bottom: 0px;left: 0;right: 0"
     );
     console.log($player);
     $player.innerHTML = "";

@@ -106,21 +106,19 @@ export default class Login extends InputWrapper {
       $button.style.backgroundColor = "rgb(255 99 71 / 50%)";
       $button.style.cursor = "default";
     }
-    $form.onsubmit = (event) => {
+    $form.onsubmit = async (event) => {
       event.preventDefault();
-      login(this.state.data.email, this.state.data.password);
-      let tmpState = this.state;
-      tmpState = {
-        data: {
-          email: "",
-          password: "",
-        },
-        messegeError: {
-          email: "",
-          password: "",
-        },
-      };
-      this.setState(tmpState);
+      await login(this.state.data.email, this.state.data.password);
+      await db
+        .collection("admins")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().email == auth.currentUser.email) {
+              router.navigate("/adminscreen");
+            }
+          });
+        });
       return;
     };
 

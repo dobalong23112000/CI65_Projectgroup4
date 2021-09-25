@@ -3,6 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+#html {
+  font-family: emoji;
+}
 #contentRegister,
 #contentLogin,
 #addsong {
@@ -12,7 +15,7 @@
 .header {
   position: fixed;
   top: 0;
-  border: red 1px solid;
+  border-bottom: 2px solid;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -51,11 +54,19 @@
   width: 30%;
 }
 .rightheaderuser h2 {
+  font-size: larger;
+  font-family: cursive;
+  color: antiquewhite;
   padding: 4px;
   width: 60%;
   text-align: center;
 }
 .rightheaderuser button {
+  cursor: pointer;
+  border-radius: 22px;
+  color: white;
+  background-color: rgba(255, 99, 71, 0.863);
+  font-weight: bold;
   width: 40%;
 }
 .header > .head a > img {
@@ -94,7 +105,7 @@
 }
 .header > .foot {
   flex-grow: 1;
-  background-color: rgb(233, 220, 200);
+  background-color: #325d79;
   height: 55px;
   display: flex;
   justify-content: center;
@@ -103,17 +114,17 @@
 }
 
 .header > .foot > a {
+  color: white;
   text-decoration: none;
   font-size: 15px;
-  color: black;
-  font-weight: 450;
+  font-family: auto;
   margin: 3% 3% 3% 3%;
   transition: 000.4s;
 }
 
 .header > .foot > a:hover {
   transition: 0.4s;
-  color: red;
+  color: rgba(255, 99, 71, 0.863);
 }
 
 .header > .foot > button {
@@ -131,6 +142,12 @@ html {
   color: #333;
   font-size: 62.5%;
   font-family: "Open Sans", sans-serif;
+}
+#main {
+  background-color: #325d79;
+  font-size: 14px;
+  color: #fff;
+  font-weight: lighter;
 }
 .main {
   background: rgba(51, 62, 73, 0.7);
@@ -232,29 +249,32 @@ html {
   margin-top: 20px;
 }
 .listmusic {
+  font-family: emoji;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-bottom: 50px;
 }
 .music {
+  box-shadow: 0px 0px 10px black;
+  border-radius: 20px;
   margin: 20px 20px;
-  border: 1px solid #555;
-  width: calc(100% / 4);
-  padding: 15px;
-  height: calc(100vh / 2);
+  width: calc(100% / 5);
+  height: calc(100vh / 3);
 }
 .music img {
+  border-radius: 20px;
   width: 100%;
-  border-radius: 50%;
-  height: 90%;
+  height: 70%;
 }
 .music h3 {
+  padding-top: 3px;
   text-align: center;
+  font-weight: unset;
 }
 .active {
   color: white;
-  background-color: red;
+  background-color: rgba(255, 99, 71, 0.863);
 }
 
 .control {
@@ -269,24 +289,28 @@ html {
   font-size: 18px;
 }
 .control .btn-toggle-play {
+  cursor: pointer;
   width: 56px;
   height: 56px;
   font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: rgba(255, 99, 71, 0.863);
   color: white;
   border-radius: 50%;
   margin-top: auto;
   margin-bottom: auto;
 }
+
 .progress {
   width: 70%;
   margin: auto;
   height: 50px;
 }
 .cdthumb {
+  display: flex;
+  justify-content: flex-start;
   text-align: center;
   border-right: 1px solid;
   float: left;
@@ -294,14 +318,130 @@ html {
   height: 100%;
 }
 .cdthumb img {
-  height: 80%;
+  margin: auto 25px;
+  width: 25%;
+  height: 70%;
   border-radius: 50%;
 }
+.cdthumb h3 {
+  margin: auto 2px;
+  font-size: 14px;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .repeat {
-  color: red;
+  color: rgba(255, 99, 71, 0.863);
 }
 #content {
   padding: 20px 110px;
   margin-top: 100px;
   margin-bottom: 100px;
+  min-height: 1000px;
+}
+.dashboard {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 269px;
+  margin: 10px auto;
+  border: 1px solid;
+  margin-top: 40px;
+  border-radius: 20px;
+}
+.left {
+  height: 80%;
+  width: 35%;
+
+  background: url(https://nhac.vn/web-v2/youtube-embed/ifm-3.jpg) no-repeat;
+  background-size: cover;
+  margin: auto;
+  border-radius: 25px;
+}
+.left img {
+  width: 100%;
+  height: 100%;
+  padding: 30px 15px;
+  padding-top: 55px;
+}
+.right {
+  width: 60%;
+  text-align: center;
+}
+.middle {
+  display: flex;
+  justify-content: space-evenly;
+}
+.right div {
+  padding: 17px;
+}
+.right .btn-toggle-play {
+  background-color: rgba(255, 99, 71, 0.863);
+  border-radius: 50%;
+}
+.right div input {
+  width: 100%;
+}
+.box {
+  display: flex;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+.box div {
+  margin: 10px;
+}
+.comment {
+  box-shadow: 1px 0px 0px 5px #53535b;
+  background-color: white;
+  width: 70%;
+  margin: auto;
+}
+.textarea textarea {
+  font-size: 15px;
+  border: none;
+  height: 45px;
+  padding: 10px;
+  border-bottom: 1px solid;
+  width: 100%;
+}
+#content h1 {
+  margin-top: 20px;
+}
+#content h3 {
+  margin-top: 10px;
+}
+.comment form h3 {
+  margin-bottom: 10px;
+}
+.comment form .btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.comment form .btn button {
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+}
+.dashboard .duration {
+  display: flex;
+}
+.listcomment {
+  margin: auto;
+  background-color: white;
+  color: black;
+  margin-top: 20px;
+}
+.listcomment ul {
+  overflow: scroll;
+  max-height: 350px;
+  list-style: none;
+}
+.listcomment ul li {
+  padding: 15px;
+  font-size: 15px;
+  border-bottom: 1px solid burlywood;
+}
+textarea:focus {
+  outline: none;
 }

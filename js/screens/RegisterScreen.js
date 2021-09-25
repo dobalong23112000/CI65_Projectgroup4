@@ -22,7 +22,11 @@ export default class Register extends InputWrapper {
   }
   handleInput(fieldName, filedValue) {
     let tmpState = this.state;
-
+    if (filedValue.trim() == "") {
+      tmpState.messegeError[fieldName] = "Invalid" + " " + fieldName;
+    } else {
+      tmpState.messegeError[fieldName] = "";
+    }
     if (fieldName == "email" && filedValue) {
       if (!validateEmail(filedValue)) {
         tmpState.messegeError[fieldName] = "Email is false";
@@ -42,11 +46,7 @@ export default class Register extends InputWrapper {
         tmpState.messegeError[fieldName] = "Password is incorrect";
       }
     }
-    if (filedValue.trim() == "") {
-      tmpState.messegeError[fieldName] = "Invalid" + " " + fieldName;
-    } else {
-      tmpState.messegeError[fieldName] = "";
-    }
+
     tmpState.data[fieldName] = filedValue.trim();
 
     this.setState(tmpState);
@@ -137,11 +137,18 @@ export default class Register extends InputWrapper {
     }
     $form.onsubmit = async (event) => {
       event.preventDefault();
-      register(
+      await db.collection("users").add({
+        name: this.state.data.name,
+        email: this.state.data.email,
+        password: this.state.data.password,
+        favouritelist: [],
+      });
+      await register(
         this.state.data.name,
         this.state.data.email,
         this.state.data.password
       );
+
       let tmpState = this.state;
       tmpState = {
         data: {
@@ -158,7 +165,7 @@ export default class Register extends InputWrapper {
         },
       };
       this.setState(tmpState);
-      
+
       return;
     };
 

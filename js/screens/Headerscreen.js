@@ -36,11 +36,14 @@ export default class Headerscreen extends listmusicscreen {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         $righheaderUser.style.display = "flex";
-        $righheaderUser.innerHTML = `  <h2>Hello, ${user.displayName}</h2>
-        <button id="btnlogout">Logout</button>`;
+        $righheaderUser.innerHTML = `  <h2>Hello, ${
+          user.displayName ?? "Admin"
+        }</h2>
+        <button id="btnlogout">LOGOUT</button>`;
         let $btnLogout = $righheaderUser.querySelector("#btnlogout");
         $btnLogout.onclick = (e) => {
           firebase.auth().signOut();
+          window.location.href = "../index.html";
         };
         $righheader.style.display = "none";
       } else {
@@ -57,8 +60,9 @@ export default class Headerscreen extends listmusicscreen {
     };
     let $Btnlogin = $head.querySelector("#login");
 
-    $Btnlogin.onclick = function () {
+    $Btnlogin.onclick = function (e) {
       $contentLogin.style.display = "";
+ 
     };
     let $input = $head.querySelector(".search");
     let $search = $head.querySelector("#search");
@@ -73,12 +77,12 @@ export default class Headerscreen extends listmusicscreen {
           element.data().singer.includes($input.value) ||
           $input.value == element.data().namesong
         ) {
-          tmpState.push(element.data());
+          tmpState.push(element);
           isSearch = false;
         }
       });
       if (isSearch) {
-        console.log("Khong tim thay bai hat");
+        alert("Khong tim thay bai hat");
       }
       this.setState(tmpState);
     };

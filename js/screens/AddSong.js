@@ -36,14 +36,21 @@ export default class AddSong extends InputWrapper {
   async upLoadSong(file) {
     let thisRef = storageRef.child(file.name);
     await thisRef.put(file);
-    console.log("THanh cong");
   }
   handleBtnonclick = async (e) => {
     e.preventDefault();
-    console.log(this.state);
-
-    await db.collection("Listmusic").add(this.state.data);
+    await db.collection("Listmusic").add({
+      namesong: this.state.data.namesong,
+      genre: this.state.data.genre,
+      singer: this.state.data.singer,
+      author: this.state.data.author,
+      audio: this.state.data.audio,
+      img: this.state.data.img,
+      Comments: [],
+    });
+    alert("Upload thanh cong");
     let tmpState = this.state;
+
     tmpState = {
       data: {
         namesong: "",
@@ -161,8 +168,8 @@ export default class AddSong extends InputWrapper {
     $input.classList.add("form-control");
     $input.value = this.state.data.audio;
     $formgroupaudio.append($labelaudio, $inputaudio, $input, $messageaudio);
-    $inputaudio.onchange = (e) => {
-      this.upLoadSong(e.target.files[0]);
+    $inputaudio.onchange = async (e) => {
+      await this.upLoadSong(e.target.files[0]);
       this.handleAddSong("audio", e.target.files[0].name);
     };
 
