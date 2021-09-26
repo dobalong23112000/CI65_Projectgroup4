@@ -7,20 +7,21 @@ export default class CommentScreen extends Basecomponents {
     $comment.classList.add("comment");
     let $titlecomment = document.createElement("h3");
     $titlecomment.innerHTML = "Comments";
-    $titlecomment.style = "width: 70%; margin:20px auto;";
+    $titlecomment.style =
+      "    font-size: 22px;width: 70%;margin: 100px auto 20px;color: black;";
     $comment.innerHTML = `<form action="#">
     
      <div class="textarea">
             <textarea  cols="30" placeholder="Write something ......" ></textarea>
         </div>
         <div class="btn">
-            <button id="btn-comment">Comment</button>
+            <button id="btn-comment"><i class="fas fa-paper-plane"></i></button>
      </div>
 </form>`;
     let $listcomment = document.createElement("div");
     $listcomment.classList.add("listcomment");
     let $ulcomment = document.createElement("ul");
-    let btnComment = $comment.querySelector("#btn-comment");
+    let btnComment = $comment.querySelector(".fa-paper-plane");
     btnComment.onclick = async (e) => {
       e.preventDefault();
       if (!auth.currentUser) {
@@ -41,6 +42,7 @@ export default class CommentScreen extends Basecomponents {
               });
             }
           });
+          $content.removeChild($titlecomment);
           $content.removeChild($comment);
           this.setState();
         }
@@ -54,15 +56,16 @@ export default class CommentScreen extends Basecomponents {
           if (this.props.id == doc.id) {
             doc.data().Comments.forEach((element) => {
               let $li = document.createElement("li");
-              $li.innerHTML = `<label title="${element.useremail}"> <b>${element.username} :</b> </label> </br></br>${element.comment}`;
+              $li.innerHTML = `<label title="${element.useremail}"> <b>${element.username} :</b> </label> </br>${element.comment}`;
               $ulcomment.append($li);
             });
           }
         });
       });
-
     $comment.append($listcomment);
     $content.insertBefore($comment, document.querySelector(".listmusic"));
+    $content.insertBefore($titlecomment, $comment);
+
     return $content;
   }
 }

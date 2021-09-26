@@ -144,6 +144,7 @@ export default class MusicPlayer extends Basecomponents {
                   doc.data().favouritelist[i].singer == this.props.singer
                 ) {
                   $icon.style.color = "red";
+                  // $icon.disabled = true;
                 }
               }
             }
