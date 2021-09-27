@@ -447,9 +447,11 @@ html {
   margin-top: 20px;
 }
 .listcomment ul {
-  overflow: scroll;
+  overflow: auto;
   max-height: 350px;
   list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .listcomment ul li {
   margin: 20px 0px;

@@ -38,6 +38,7 @@ export class FavouriteScreen extends trowfavourite {
                   console.log(doc.ref);
                   await doc.ref.update({
                     favouritelist: firebase.firestore.FieldValue.arrayRemove({
+                      id: doc.data().favouritelist[i].id,
                       audio: doc.data().favouritelist[i].audio,
                       img: doc.data().favouritelist[i].img,
                       namesong: doc.data().favouritelist[i].namesong,

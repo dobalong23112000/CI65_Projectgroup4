@@ -49,27 +49,7 @@ export default class AddSong extends InputWrapper {
       Comments: [],
     });
     alert("Upload thanh cong");
-    let tmpState = this.state;
-
-    tmpState = {
-      data: {
-        namesong: "",
-        author: "",
-        singer: "",
-        genre: "difference",
-        audio: "",
-        img: "",
-      },
-      messegeError: {
-        namesong: "",
-        author: "",
-        singer: "",
-        genre: "",
-        audio: "",
-        img: "",
-      },
-    };
-    this.setState(tmpState);
+    window.location.reload();
   };
   render() {
     let $container = document.querySelector("#addsong");
@@ -134,7 +114,6 @@ export default class AddSong extends InputWrapper {
     $selectgenre.classList.add("form-control");
     $selectgenre.onchange = (e) => {
       this.handleAddSong("genre", e.target.value);
-      console.log(e.target.value);
     };
     $selectgenre.innerHTML = `<option value="hiphop">Hip Hop</option>
     <option value="pop">Pop</option>

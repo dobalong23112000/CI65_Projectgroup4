@@ -33,6 +33,23 @@ export class AdminScreen extends trowfavourite {
           let $delete = _list.querySelector("#delete");
           $delete.onclick = async (e) => {
             await db.collection("Listmusic").doc(doc.id).delete();
+            let getData = await db.collection("users").get();
+            getData.forEach((element) => {
+              // console.log(element.data().favouritelist);
+              for (let i = 0; i < element.data().favouritelist.length; i++) {
+                if (element.data().favouritelist[i].id == doc.id) {
+                  element.ref.update({
+                    favouritelist: firebase.firestore.FieldValue.arrayRemove({
+                      id: element.data().favouritelist[i].id,
+                      audio: element.data().favouritelist[i].audio,
+                      img: element.data().favouritelist[i].img,
+                      namesong: element.data().favouritelist[i].namesong,
+                      singer: element.data().favouritelist[i].singer,
+                    }),
+                  });
+                }
+              }
+            });
             this.setState();
           };
           tbody.append(_list);
