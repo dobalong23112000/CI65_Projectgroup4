@@ -5,10 +5,16 @@ export async function register(name, email, password) {
     user.updateProfile({
       displayName: name,
     });
+    db.collection("users").add({
+      name: name,
+      email: email,
+      password: password,
+      favouritelist: [],
+    });
     firebase.auth().signOut();
     alert("Dang ki thanh cong");
   } catch (error) {
-    console.log(error.message);
+    alert("Dang ky khong thanh cong");
   }
 }
 export async function login(email, password) {

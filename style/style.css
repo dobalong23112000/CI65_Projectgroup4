@@ -340,9 +340,10 @@ html {
   min-height: 1000px;
 }
 .musicplayer {
-  color: darkblue;
+  color: black;
 }
 .dashboard {
+  color: white;
   background-color: cadetblue;
   width: 70%;
   display: flex;
@@ -397,17 +398,19 @@ html {
   margin: 10px;
 }
 .comment {
-  box-shadow: 1px 0px 0px 5px #53535b;
-  background-color: white;
+  background-color: rgb(233 220 200);
   width: 70%;
   margin: auto;
 }
+.comment form {
+  display: flex;
+}
 .textarea textarea {
   font-size: 15px;
-  border: none;
-  height: 45px;
-  padding: 10px;
-  border-bottom: 1px solid;
+  height: 60px;
+  padding: 20px 10px;
+  border: 1px solid;
+  border-radius: 20px;
   width: 100%;
 }
 #content h1 {
@@ -424,28 +427,38 @@ html {
   justify-content: flex-end;
 }
 .comment form .btn button {
-  margin-top: 10px;
-  width: 100px;
+  margin-top: 15px;
   height: 30px;
+  background: none;
+  border: none;
+  position: absolute;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.comment form .btn button i {
+  font-size: large;
 }
 .dashboard .duration {
   display: flex;
 }
 .listcomment {
-  margin: auto;
-  background-color: white;
+  width: 55%;
   color: black;
   margin-top: 20px;
 }
 .listcomment ul {
-  overflow: scroll;
+  overflow: auto;
   max-height: 350px;
   list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .listcomment ul li {
+  margin: 20px 0px;
   padding: 15px;
   font-size: 15px;
-  border-bottom: 1px solid burlywood;
+  background-color: azure;
+  border-radius: 20px;
 }
 textarea:focus {
   outline: none;

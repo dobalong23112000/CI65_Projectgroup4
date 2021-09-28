@@ -9,19 +9,19 @@ export default class NavbarScreen extends Basecomponents {
     $foot.innerHTML = `<a href="">HOME</a>
         <a href="" >PLAYLIST</a>
         <a href="">BXH</a>
-        <a href="#/listfavourite" data-navigo>FAVOURITE SONG</a>
+        <a id="listfavourite" href="#/listfavourite" data-navigo>FAVOURITE SONG</a>
         <a href="">SETTINGS</a>
-        <button class="button"  type="button" >UPLOAD</button>`;
+        <button class="button"  type="button">UPLOAD</button>`;
     let $btnUpload = $foot.querySelector(".button");
+    let $listfavou = $foot.querySelector("#listfavourite");
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        $btnUpload.disabled = false;
         $btnUpload.style.cursor = "pointer";
-        $btnUpload.style.backgroundColor = "rgba(255, 99, 71, 0.863)";
+        $btnUpload.style.display = "";
+        $listfavou.style.display = "";
       } else {
-        $btnUpload.disabled = true;
-        $btnUpload.style.cursor = "default";
-        $btnUpload.style.backgroundColor = "#555";
+        $btnUpload.style.display = "none";
+        $listfavou.style.display = "none";
       }
     });
     $btnUpload.onclick = () => {

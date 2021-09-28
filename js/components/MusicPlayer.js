@@ -2,6 +2,7 @@ import Basecomponents from "../Basecomponents.js";
 
 export default class MusicPlayer extends Basecomponents {
   render() {
+    console.log(this.props);
     let $musicplayer = document.createElement("div");
     $musicplayer.className = "musicplayer";
     let $content = document.querySelector("#content");
@@ -137,13 +138,9 @@ export default class MusicPlayer extends Basecomponents {
           e.forEach((doc) => {
             if (auth.currentUser.email == doc.data().email) {
               for (let i = 0; i < doc.data().favouritelist.length; i++) {
-                if (
-                  doc.data().favouritelist[i].audio == this.props.audioUrl &&
-                  doc.data().favouritelist[i].img == this.props.img &&
-                  doc.data().favouritelist[i].namesong == this.props.name &&
-                  doc.data().favouritelist[i].singer == this.props.singer
-                ) {
+                if (doc.data().favouritelist[i].id == this.props.id) {
                   $icon.style.color = "red";
+                  // $icon.disabled = true;
                 }
               }
             }
@@ -161,6 +158,7 @@ export default class MusicPlayer extends Basecomponents {
           if (user.data().email == auth.currentUser.email) {
             user.ref.update({
               favouritelist: firebase.firestore.FieldValue.arrayUnion({
+                id: this.props.id,
                 audio: this.props.audioUrl,
                 img: this.props.img,
                 namesong: this.props.name,
@@ -172,7 +170,7 @@ export default class MusicPlayer extends Basecomponents {
       }
     };
     $box.append($like, $share, $report);
-    $right_dashboard.append($control, $duration);
+    $right_dashboard.append($control, $duration, $audio);
     $dashboard.append($left_dashboard, $right_dashboard);
     $musicplayer.innerHTML = "";
     $musicplayer.append($tiltle, $genre, $dashboard, $box);

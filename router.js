@@ -22,7 +22,7 @@ router
 
 router
   .on("/musicplayer", function () {
-    $content.innerHTML = "";
+    $main.innerHTML = "";
     let _musicplayer = new MusicPlayer().render();
   })
   .resolve();
