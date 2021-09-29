@@ -62,7 +62,6 @@ export default class Headerscreen extends listmusicscreen {
 
     $Btnlogin.onclick = function (e) {
       $contentLogin.style.display = "";
- 
     };
     let $input = $head.querySelector(".search");
     let $search = $head.querySelector("#search");

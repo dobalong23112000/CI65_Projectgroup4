@@ -10,6 +10,7 @@ export async function register(name, email, password) {
       email: email,
       password: password,
       favouritelist: [],
+      rating: [],
     });
     firebase.auth().signOut();
     alert("Dang ki thanh cong");

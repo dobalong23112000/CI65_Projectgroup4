@@ -6,7 +6,7 @@ export default class NavbarScreen extends Basecomponents {
     let $foot = document.createElement("nav");
     $foot.classList.add("foot");
     let $addsong = document.querySelector("#addsong");
-    $foot.innerHTML = `<a href="">HOME</a>
+    $foot.innerHTML = `<a id="home" href="">HOME</a>
         <a href="" >PLAYLIST</a>
         <a href="">BXH</a>
         <a id="listfavourite" href="#/listfavourite" data-navigo>FAVOURITE SONG</a>
@@ -19,6 +19,13 @@ export default class NavbarScreen extends Basecomponents {
         $btnUpload.style.cursor = "pointer";
         $btnUpload.style.display = "";
         $listfavou.style.display = "";
+        if (user.displayName == null) {
+          let $home = document.querySelector("#home");
+          $home.onclick = (e) => {
+            e.preventDefault();
+            router.navigate("/adminscreen");
+          };
+        }
       } else {
         $btnUpload.style.display = "none";
         $listfavou.style.display = "none";

@@ -4,6 +4,7 @@ import quickPlayer from "./Quick-player.js";
 import Headerscreen from "./Headerscreen.js";
 import MusicPlayer from "../components/MusicPlayer.js";
 import CommentScreen from "./CommentScreen.js";
+import RatingScreen from "./Ratingscreen.js";
 
 export default class listmusicscreen extends Songwrapper {
   constructor(props) {
@@ -66,6 +67,9 @@ export default class listmusicscreen extends Songwrapper {
       singer: infoSong.data().singer,
       audioUrl: infoSong.data().audio,
       audio: audioUrl,
+    }).render();
+    let _rating = new RatingScreen({
+      id: infoSong.id,
     }).render();
   }
 }

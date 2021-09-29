@@ -2,7 +2,6 @@ import Basecomponents from "../Basecomponents.js";
 
 export default class MusicPlayer extends Basecomponents {
   render() {
-    console.log(this.props);
     let $musicplayer = document.createElement("div");
     $musicplayer.className = "musicplayer";
     let $content = document.querySelector("#content");
@@ -62,6 +61,7 @@ export default class MusicPlayer extends Basecomponents {
     $duration.append($timeduration);
     let $box = document.createElement("div");
     $box.classList.add("box");
+
     let $like = document.createElement("div");
     $like.innerHTML = `<i class="fas fa-heart"></i> Like`;
     let $report = document.createElement("div");
@@ -169,6 +169,7 @@ export default class MusicPlayer extends Basecomponents {
         }
       }
     };
+
     $box.append($like, $share, $report);
     $right_dashboard.append($control, $duration, $audio);
     $dashboard.append($left_dashboard, $right_dashboard);
