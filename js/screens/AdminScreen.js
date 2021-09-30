@@ -29,6 +29,7 @@ export class AdminScreen extends trowfavourite {
             singer: doc.data().singer,
             audio: doc.data().audio,
             img: doc.data().img,
+            rating: doc.data().rating,
           }).render();
           let $delete = _list.querySelector("#delete");
           $delete.onclick = async (e) => {

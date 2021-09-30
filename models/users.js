@@ -2,20 +2,23 @@ export async function register(name, email, password) {
   try {
     await auth.createUserWithEmailAndPassword(email, password);
     let user = firebase.auth().currentUser;
-    user.updateProfile({
-      displayName: name,
-    });
-    db.collection("users").add({
-      name: name,
-      email: email,
-      password: password,
-      favouritelist: [],
-      rating: [],
-    });
+    user
+      .updateProfile({
+        displayName: name,
+      })
+      .then((e) => {
+        db.collection("users").add({
+          name: name,
+          email: email,
+          password: password,
+          favouritelist: [],
+          rating: [],
+        });
+      });
     firebase.auth().signOut();
     alert("Dang ki thanh cong");
   } catch (error) {
-    alert("Dang ky khong thanh cong");
+    alert("Email cua ban da ton tai");
   }
 }
 export async function login(email, password) {
@@ -25,10 +28,8 @@ export async function login(email, password) {
 
     let $login = document.querySelector("#contentLogin");
     $login.style.display = "none";
+    window.location.reload();
   } catch (error) {
     alert(error.message);
   }
 }
-export function getCurrentUser() {}
-export function updateUser() {}
-export function logout() {}

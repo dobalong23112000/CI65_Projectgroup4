@@ -1,4 +1,3 @@
-import { getCurrentUser } from "../../models/users.js";
 import Basecomponents from "../Basecomponents.js";
 import listmusicscreen from "./Listmusic.js";
 
@@ -22,9 +21,7 @@ export default class Headerscreen extends listmusicscreen {
       <input class="search"  type="search" placeholder="Tìm kiếm bài hát ..." />
       <i id="search" class="fas fa-search"></i>
       </div>
-      <div class="rightheaderuser">
-  
-  </div>
+      <div class="rightheaderuser"></div>
       <div class="rightheader">
       <a href="#" id="login">Đăng nhập</a>
       <h3>/</h3>

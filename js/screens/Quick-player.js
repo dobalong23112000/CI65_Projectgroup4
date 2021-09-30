@@ -95,7 +95,7 @@ export default class quickPlayer extends BaseComponents {
     let $player = document.querySelector("#player");
     $player.setAttribute(
       "style",
-      "background-color: #021f32;position: fixed;height: 100px; bottom: 0px;left: 0;right: 0"
+      "background-color: #021f32;position: fixed;height: 110px; bottom: 0px;left: 0;right: 0; padding-top:10px"
     );
     console.log($player);
     $player.innerHTML = "";

@@ -2,7 +2,6 @@ import Basecomponents from "../Basecomponents.js";
 
 export default class RatingScreen extends Basecomponents {
   render() {
-    console.log(this.props);
     let $musicplayer = document.querySelector(".musicplayer");
     let $content = document.querySelector("#content");
     let $rating = document.createElement("div");
@@ -34,7 +33,9 @@ export default class RatingScreen extends Basecomponents {
       ></label>
     </div>
   </div>
-  <h3 id="rating-value"></h3>`;
+  <h3 id="rating-value"></h3>
+  <h5 id="commentrating" style="font-weight: lighter;text-align: center;line-height: 25px; margin-left: 10px;"></h5>
+  `;
     let star = $rating.querySelectorAll("input");
     let showValue = $rating.querySelector("#rating-value");
 
@@ -70,6 +71,9 @@ export default class RatingScreen extends Basecomponents {
             });
             if (isRated) {
               showValue.innerHTML = `${parseInt(ratetb / count)}/5`;
+              $rating.querySelector(
+                "#commentrating"
+              ).innerHTML = `(Đã đánh giá)`;
               showValue.style.backgroundColor = "cornsilk";
               star[Math.abs(parseInt(ratetb / count) - 5)].checked = true;
               for (let i = 0; i < star.length; i++) {

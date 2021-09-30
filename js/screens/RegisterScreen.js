@@ -114,7 +114,7 @@ export default class Register extends InputWrapper {
     });
 
     let isPassed = true;
-
+    let that = this;
     for (const key in this.state.data) {
       if (!this.state.data[key]) {
         isPassed = false;
@@ -137,18 +137,12 @@ export default class Register extends InputWrapper {
     }
     $form.onsubmit = async (event) => {
       event.preventDefault();
-      // await db.collection("users").add({
-      //   name: this.state.data.name,
-      //   email: this.state.data.email,
-      //   password: this.state.data.password,
-      //   favouritelist: [],
-      // });
+
       await register(
         this.state.data.name,
         this.state.data.email,
         this.state.data.password
       );
-
       let tmpState = this.state;
       tmpState = {
         data: {

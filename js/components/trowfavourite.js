@@ -23,7 +23,13 @@ export class trowfavourite extends Basecomponents {
     $audio.src = "";
     tdPlay.append($audio);
     let tdfavou = document.createElement("td");
-    tdfavou.innerHTML = `<i class='bx bxs-heart' id="like" >`;
+    tdfavou.innerHTML = `${
+      !auth.currentUser.displayName
+        ? this.props.rating
+          ? `${this.props.rating} sao`
+          : "Chưa đánh giá"
+        : `<i class='bx bxs-heart' id="like" >`
+    }`;
     let tddelete = document.createElement("td");
     tddelete.innerHTML = `<i class='bx bxs-trash' id="delete" ></i>`;
     tr.append(tdImage, tdNamesong, tdSinger, tdPlay, tdfavou, tddelete);
